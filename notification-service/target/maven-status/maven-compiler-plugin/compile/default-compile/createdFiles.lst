@@ -1,0 +1,4 @@
+com\ksb\micro\notification\service\NotificationService.class
+com\ksb\micro\order\event\OrderPlacedEvent$Builder.class
+com\ksb\micro\notification\NotificationServiceApplication.class
+com\ksb\micro\order\event\OrderPlacedEvent.class
