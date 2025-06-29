@@ -34,6 +34,9 @@ spec:
         - name: mysql-data
           persistentVolumeClaim:
             claimName: mysql-pvc
+        - name: mysql-initdb-config
+          configMap:
+            name: mysql-initdb-config
 ---
 apiVersion: v1
 kind: Service
