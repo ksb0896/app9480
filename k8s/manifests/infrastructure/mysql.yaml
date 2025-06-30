@@ -1,3 +1,4 @@
+#TODO - create inf for ->grafana, kafka,kafka-mysql,kafka-ui,keycloak,loki, mongodb,prome,schema-registry,tempo,zookeeper
 apiVersion: apps/v1
 kind: Deployment
 metadata:
