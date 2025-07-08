@@ -1,4 +1,3 @@
-#TODO - create yml for -> common-config.yml,inventory-service, notification-service, order-service, product-service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
