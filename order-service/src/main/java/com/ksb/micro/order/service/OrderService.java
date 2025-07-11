@@ -15,18 +15,11 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-/*@RequiredArgsConstructor*/
+@RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
     private final InventoryClient inventoryClient;
     private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
-
-    //Manually addition of constructor
-    public OrderService(OrderRepository orderRepository, InventoryClient inventoryClient, KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate) {
-        this.orderRepository = orderRepository;
-        this.inventoryClient = inventoryClient;
-        this.kafkaTemplate = kafkaTemplate;
-    }
 
     public void placeOrder(OrderRequest orderRequest){
         var isProductInStock = inventoryClient.isInStock(orderRequest.skuCode(), orderRequest.quantity());
