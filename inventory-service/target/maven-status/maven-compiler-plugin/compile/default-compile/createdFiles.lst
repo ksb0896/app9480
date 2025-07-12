@@ -1,6 +1,0 @@
-com\ksb\micro\inventory\model\Inventory.class
-com\ksb\micro\inventory\controller\InventoryController.class
-com\ksb\micro\inventory\service\InventoryService.class
-com\ksb\micro\inventory\InventoryServiceApplication.class
-com\ksb\micro\inventory\config\OpenAPIConfig.class
-com\ksb\micro\inventory\repository\InventoryRepository.class
