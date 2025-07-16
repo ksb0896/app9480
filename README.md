@@ -1,36 +1,94 @@
-# API-gateway -- 9000
+# app9480 - App Name
 
-# app9480
-Ecommerce apis, microserviced based arch.
+Ecommerce APIs, microservice based architecture.
 
-Single entry point for requests
+## Services Overview
+
+- Product Service
+- Order Service
+- Inventory Service
+- Notification Service
+- API Gateway using Spring Cloud Gateway MVC
 
 # URLs - local
-http://localhost:9000/api/product<br>
-http://localhost:9000/api/order<br>
-http://localhost:9000/api/inventory
 
-# keycloack - relam
-http://localhost:8181/realms/spring-microservice-security-realm/.well-known/openid-configuration
+- http://localhost:9000/api/product
+- http://localhost:9000/api/order
+- http://localhost:9000/api/inventory
+
+# keycloack - relam URL
+- http://localhost:8181/realms/spring-microservice-security-realm/.well-known/openid-configuration
 
 # Read Me First
 The following was discovered as part of building this project:
 
 * The original package name 'com.ksb.micro.api-gateway' is invalid and this project uses 'com.ksb.micro.api_gateway' instead.
+* 
+## Tech Stack
 
-# Getting Started
+The technologies used in this project are:
 
-### Reference Documentation
-For further reference, please consider the following sections:
+- Spring Boot
+- Mongo DB
+- MySQL
+- Kafka
+- Keycloak
+- Grafana Stack (Prometheus, Grafana, Loki and Tempo)
+- API Gateway using Spring Cloud Gateway MVC
+- Kubernetes
+- Docker
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.5.0/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.5.0/maven-plugin/build-image.html)
-* [Gateway](https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc.html)
+## How to run the backend services
 
-### Maven Parent overrides
+Make sure you have the following installed on your machine:
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+- Java 21
+- Docker
+- Kind Cluster - https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+
+### Start Kind Cluster
+
+Run the k8s/kind/create-kind-cluster.sh script to create the kind Kubernetes cluster
+
+```shell
+./k8s/kind/create-kind-cluster.sh
+```
+This will create a kind cluster and pre-load all the required docker images into the cluster, this will save you time downloading the images when you deploy the application.
+
+### Deploy the infrastructure
+
+Run the k8s/manisfests/infrastructure.yaml file to deploy the infrastructure
+
+```shell
+kubectl apply -f k8s/manifests/infrastructure.yaml
+```
+
+### Deploy the services
+
+Run the k8s/manifests/applications.yaml file to deploy the services
+
+```shell
+kubectl apply -f k8s/manifests/applications.yaml
+```
+
+### Access the API Gateway
+
+To access the API Gateway, you need to port-forward the gateway service to your local machine
+
+```shell
+kubectl port-forward svc/gateway-service 9000:9000
+```
+
+### Access the Keycloak Admin Console
+To access the Keycloak admin console, you need to port-forward the keycloak service to your local machine
+
+```shell
+kubectl port-forward svc/keycloak 8080:8080
+```
+
+### Access the Grafana Dashboards
+To access the Grafana dashboards, you need to port-forward the grafana service to your local machine
+
+```shell
+kubectl port-forward svc/grafana 3000:3000
+```
