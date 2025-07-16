@@ -23,7 +23,7 @@ Ecommerce APIs, microservice based architecture.
 The following was discovered as part of building this project:
 
 * The original package name 'com.ksb.micro.api-gateway' is invalid and this project uses 'com.ksb.micro.api_gateway' instead.
-* 
+
 ## Tech Stack
 
 The technologies used in this project are:
